@@ -135,6 +135,7 @@ document.querySelectorAll(".faq-question").forEach(function (q) {
 });
 
 // Hero carousel fan animation
+const heroCarousel = document.querySelector(".hero-carousel");
 const heroImages = Array.from(document.querySelectorAll(".hero-carousel img"));
 let activeHeroIndex = 0;
 
@@ -153,8 +154,47 @@ function updateHeroImages() {
   });
 }
 
-updateHeroImages();
-setInterval(function () {
-  activeHeroIndex = (activeHeroIndex + 1) % heroImages.length;
+function changeHeroIndex(direction) {
+  if (!heroImages.length) return;
+  const total = heroImages.length;
+  activeHeroIndex = (activeHeroIndex + direction + total) % total;
   updateHeroImages();
-}, 4000);
+}
+
+updateHeroImages();
+if (heroImages.length) {
+  setInterval(() => changeHeroIndex(1), 4000);
+}
+
+if (heroCarousel) {
+  let heroPointerActive = false;
+  let heroPointerStartX = 0;
+
+  const heroPointerThreshold = 40;
+
+  heroCarousel.addEventListener("pointerdown", (event) => {
+    heroPointerActive = true;
+    heroPointerStartX = event.clientX;
+    heroCarousel.setPointerCapture(event.pointerId);
+  });
+
+  heroCarousel.addEventListener("pointermove", (event) => {
+    if (!heroPointerActive) return;
+    const deltaX = event.clientX - heroPointerStartX;
+    if (Math.abs(deltaX) > heroPointerThreshold) {
+      changeHeroIndex(deltaX > 0 ? -1 : 1);
+      heroPointerActive = false;
+      heroCarousel.releasePointerCapture(event.pointerId);
+    }
+  });
+
+  const stopHeroSwipe = (event) => {
+    if (!heroPointerActive) return;
+    heroPointerActive = false;
+    heroCarousel.releasePointerCapture(event.pointerId);
+  };
+
+  heroCarousel.addEventListener("pointerup", stopHeroSwipe);
+  heroCarousel.addEventListener("pointercancel", stopHeroSwipe);
+  heroCarousel.addEventListener("pointerleave", stopHeroSwipe);
+}
