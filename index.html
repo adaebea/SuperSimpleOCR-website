@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>SuperSimpleOCR Support</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      /* Reset and base styles */
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #121212;
+        color: #e0e0e0;
+        line-height: 1.6;
+        position: relative;
+      }
+      body::before {
+        content: "";
+        position: fixed;
+        inset: 0;
+        background-image: radial-gradient(
+            circle at 0 0,
+            rgba(255, 255, 255, 0.15) 1.5px,
+            transparent 1.5px
+          ),
+          radial-gradient(
+            circle at 25px 25px,
+            rgba(255, 255, 255, 0.1) 1.5px,
+            transparent 1.5px
+          );
+        background-size: 40px 40px;
+        animation: drift 20s linear infinite;
+        opacity: 0.5;
+        pointer-events: none;
+        z-index: 0;
+      }
+      body::after {
+        content: "";
+        position: fixed;
+        top: -20vh;
+        left: -15vw;
+        width: 130vw;
+        height: 70vh;
+        background: radial-gradient(
+            circle at 15% 30%,
+            rgba(88, 42, 255, 0.08),
+            transparent 60%
+          ),
+          radial-gradient(
+            circle at 60% 10%,
+            rgba(62, 16, 227, 0.1),
+            transparent 65%
+          ),
+          radial-gradient(
+            circle at 85% 45%,
+            rgba(76, 9, 220, 0.05),
+            transparent 60%
+          );
+        filter: blur(60px);
+        opacity: 0.7;
+        animation: auroraShift 16s ease-in-out infinite alternate;
+        pointer-events: none;
+        z-index: 0;
+        mix-blend-mode: screen;
+      }
+      @keyframes drift {
+        from {
+          transform: translate3d(0, 0, 0);
+        }
+        to {
+          transform: translate3d(-50px, -50px, 0);
+        }
+      }
+      @keyframes auroraShift {
+        0% {
+          transform: translate3d(-5%, -5%, 0) scale(1);
+          background-position: 0 0, 0 0, 0 0;
+        }
+        50% {
+          transform: translate3d(5%, 2%, 0) scale(1.05);
+          background-position: 8% -5%, 12% 5%, -10% 8%;
+        }
+        100% {
+          transform: translate3d(-3%, 4%, 0) scale(1);
+          background-position: 0 0, -8% -5%, 10% -6%;
+        }
+      }
+      a {
+        color: #90caf9;
+        text-decoration: none;
+      }
+      header,
+      section,
+      footer {
+        width: 90%;
+        max-width: 800px;
+        margin: 40px auto;
+        position: relative;
+        z-index: 1;
+      }
+      header h1 {
+        font-size: 2rem;
+        margin-bottom: 10px;
+      }
+      header p {
+        font-size: 1rem;
+        color: #a0a0a0;
+      }
+      .shortcut {
+        display: inline-flex;
+        align-items: center;
+        gap: 6px;
+        padding: 4px 4px;
+        border-radius: 10px;
+        color: #90caf9;
+        background: rgba(144, 202, 249, 0.08);
+        font-size: 0.85rem;
+        font-weight: bold;
+        letter-spacing: 0.05em;
+      }
+      .shortcut span {
+        background: rgba(255, 255, 255, 0.1);
+        padding: 2px 8px;
+        border-radius: 6px;
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      /* Hero section */
+      .hero {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+      }
+      .hero-carousel {
+        --hero-width: min(520px, 90vw);
+        position: relative;
+        width: var(--hero-width);
+        height: calc(var(--hero-width) * 0.85);
+        margin-bottom: 40px;
+        perspective: 1000px;
+      }
+      .hero-carousel img {
+        position: absolute;
+        top: 0;
+        left: 50%;
+        width: calc(var(--hero-width) * 0.85);
+        height: calc(var(--hero-width) * 0.85);
+        border-radius: 16px;
+        object-fit: cover;
+        transform-origin: bottom center;
+        transform: translateX(-50%) scale(0.8);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);
+        transition: transform 0.8s ease, z-index 0.8s ease, opacity 0.8s ease;
+        opacity: 0;
+      }
+      .hero-carousel img.center {
+        z-index: 3;
+        opacity: 1;
+        transform: translateX(-50%) scale(1) rotate(0deg);
+      }
+      .hero-carousel img.left {
+        z-index: 1;
+        opacity: 0.9;
+        transform: translate(-90%, 0) scale(0.9) rotate(-12deg);
+      }
+      .hero-carousel img.right {
+        z-index: 1;
+        opacity: 0.9;
+        transform: translate(-10%, 0) scale(0.9) rotate(12deg);
+      }
+
+      /* Content sections */
+      h2 {
+        font-size: 1.5rem;
+        margin: 30px 0 15px;
+      }
+      p {
+        margin-bottom: 15px;
+      }
+
+      /* FAQ accordion */
+      .faq-item {
+        margin-bottom: 10px;
+      }
+      .faq-question {
+        background: #1e1e1e;
+        padding: 10px 15px;
+        cursor: pointer;
+        border-radius: 5px;
+        border-left: 3px solid #90caf9;
+      }
+      .faq-answer {
+        display: none;
+        background: #2c2c2c;
+        padding: 10px 15px;
+        border-radius: 0 0 5px 5px;
+        border-left: 3px solid #90caf9;
+      }
+
+      /* Footer */
+      footer {
+        margin-top: 40px;
+        text-align: center;
+        font-size: 0.8rem;
+        color: #777;
+      }
+    </style>
+  </head>
+  <body>
+    <header class="hero">
+      <div class="hero-carousel">
+        <img src="images/app-image01.png" alt="SuperSimpleOCR screenshot 1" />
+        <img src="images/app-image02.png" alt="SuperSimpleOCR screenshot 2" />
+        <img src="images/app-image03.png" alt="SuperSimpleOCR screenshot 3" />
+      </div>
+      <h1>SuperSimpleOCR Support</h1>
+      <p>Your simple Mac menu‑bar OCR assistant.</p>
+    </header>
+
+    <section id="overview">
+      <h2>Overview</h2>
+      <p>
+        SuperSimpleOCR is a lightweight menu‑bar application for macOS that
+        allows you to quickly capture and extract text from your screen. This
+        support page provides installation instructions, usage guidance and
+        answers to common questions.
+      </p>
+    </section>
+
+    <section id="installation">
+      <h2>Installation</h2>
+      <p>
+        1. Download the latest release of SuperSimpleOCR from Mac App Store. 2.
+        Open the downloaded file and drag the application into your
+        <em>Applications</em> folder. 3. Launch the app from your Applications
+        folder. On first run, macOS may prompt for screen‑recording permission;
+        grant this so the app can capture text from your screen.
+      </p>
+    </section>
+
+    <section id="usage">
+      <h2>How to Use</h2>
+      <p>
+        • Use the shortcut
+        <span class="shortcut"
+          ><span>Control</span><span>Option</span><span>C</span></span
+        >
+        to capture and recognize text, then paste it anywhere you want.
+      </p>
+    </section>
+
+    <section id="faq">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-question">
+          Why does SuperSimpleOCR need screen recording permission?
+        </div>
+        <div class="faq-answer">
+          The app captures a portion of your screen to run OCR and extract text.
+          macOS requires user permission for any application that records the
+          screen.
+        </div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">
+          Where can I report bugs or request features?
+        </div>
+        <div class="faq-answer">
+          You can reach out via the contact email below.
+        </div>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <p>
+        If you encounter any issues or need further assistance, feel free to
+        email us at <a href="mailto:adaebea@gmail.com">adaebea@gmail.com</a>.
+      </p>
+      <p>
+        Please also review our
+        <a href="privacy-policy.html">Privacy Policy</a> to understand how we
+        handle your data.
+      </p>
+    </section>
+
+    <footer>&copy; 2025 SuperSimpleOCR. All rights reserved.</footer>
+
+    <script>
+      // Simple FAQ accordion
+      document.querySelectorAll(".faq-question").forEach(function (q) {
+        q.addEventListener("click", function () {
+          var answer = this.nextElementSibling;
+          answer.style.display =
+            answer.style.display === "block" ? "none" : "block";
+        });
+      });
+
+      // Hero carousel fan animation
+      const heroImages = Array.from(
+        document.querySelectorAll(".hero-carousel img")
+      );
+      let activeHeroIndex = 0;
+
+      function updateHeroImages() {
+        if (!heroImages.length) return;
+        const total = heroImages.length;
+        const center = activeHeroIndex % total;
+        const left = (center - 1 + total) % total;
+        const right = (center + 1) % total;
+
+        heroImages.forEach((img, index) => {
+          img.classList.remove("left", "center", "right");
+          if (index === center) img.classList.add("center");
+          else if (index === left) img.classList.add("left");
+          else if (index === right) img.classList.add("right");
+        });
+      }
+
+      updateHeroImages();
+      setInterval(function () {
+        activeHeroIndex = (activeHeroIndex + 1) % heroImages.length;
+        updateHeroImages();
+      }, 4000);
+    </script>
+  </body>
+</html>
