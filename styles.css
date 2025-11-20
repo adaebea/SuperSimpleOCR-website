@@ -136,9 +136,12 @@ header p {
 }
 .hero-carousel {
   --hero-width: min(520px, 90vw);
+  --hero-img-scale: 0.85;
   position: relative;
   width: var(--hero-width);
-  height: calc(var(--hero-width) * 0.85);
+  height: calc(
+    var(--hero-width) * var(--hero-img-scale) * var(--hero-ratio, 0.85)
+  );
   margin-bottom: 40px;
   perspective: 1000px;
 }
@@ -146,10 +149,12 @@ header p {
   position: absolute;
   top: 0;
   left: 50%;
-  width: calc(var(--hero-width) * 0.85);
-  height: calc(var(--hero-width) * 0.85);
+  width: calc(var(--hero-width) * var(--hero-img-scale));
+  height: calc(
+    var(--hero-width) * var(--hero-img-scale) * var(--hero-ratio, 0.85)
+  );
   border-radius: 16px;
-  object-fit: cover;
+  object-fit: contain;
   transform-origin: bottom center;
   transform: translateX(-50%) scale(0.8);
   box-shadow: 0 20px 40px rgba(0, 0, 0, 0.65);

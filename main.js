@@ -139,6 +139,25 @@ const heroCarousel = document.querySelector(".hero-carousel");
 const heroImages = Array.from(document.querySelectorAll(".hero-carousel img"));
 let activeHeroIndex = 0;
 
+// Keep carousel height aligned to the intrinsic aspect ratio of the images
+function updateHeroAspectRatio() {
+  if (!heroCarousel || !heroImages.length) return;
+  const baseImage = heroImages[0];
+  const applyRatio = (img) => {
+    if (img.naturalWidth && img.naturalHeight) {
+      const ratio = img.naturalHeight / img.naturalWidth;
+      heroCarousel.style.setProperty("--hero-ratio", ratio);
+    }
+  };
+  if (baseImage.complete) {
+    applyRatio(baseImage);
+  } else {
+    baseImage.addEventListener("load", () => applyRatio(baseImage), {
+      once: true,
+    });
+  }
+}
+
 function updateHeroImages() {
   if (!heroImages.length) return;
   const total = heroImages.length;
@@ -163,6 +182,7 @@ function changeHeroIndex(direction) {
 
 updateHeroImages();
 if (heroImages.length) {
+  updateHeroAspectRatio();
   setInterval(() => changeHeroIndex(1), 4000);
 }
 

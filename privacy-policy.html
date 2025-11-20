@@ -82,83 +82,334 @@
         margin-top: 30px;
         font-size: 0.95rem;
       }
+      .language-switcher {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        margin-bottom: 24px;
+        flex-wrap: wrap;
+      }
+      .language-switcher span {
+        font-size: 0.95rem;
+        color: #a0a0a0;
+      }
+      .language-buttons {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 10px;
+      }
+      .language-switcher button {
+        background: #1f1f1f;
+        color: #e0e0e0;
+        border: 1px solid #333;
+        padding: 6px 14px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background 0.2s, color 0.2s, border-color 0.2s;
+      }
+      .language-switcher button.active,
+      .language-switcher button:hover {
+        background: #90caf9;
+        color: #0d1117;
+        border-color: #90caf9;
+      }
     </style>
   </head>
   <body>
     <main>
-      <h1>Privacy Policy</h1>
-      <p>Last updated: January 2025</p>
+      <div class="language-switcher">
+        <span data-l10n="language.label">Language</span>
+        <div class="language-buttons">
+          <button type="button" class="active" data-lang="en">English</button>
+          <button type="button" data-lang="zh">中文</button>
+          <button type="button" data-lang="ja">日本語</button>
+          <button type="button" data-lang="ko">한국어</button>
+          <button type="button" data-lang="fr">Français</button>
+        </div>
+      </div>
 
-      <p>
+      <h1 data-l10n="title">Privacy Policy</h1>
+      <p data-l10n="lastUpdated">Last updated: February 2025</p>
+
+      <p data-l10n="intro">
         This Privacy Policy explains how SuperSimpleOCR (“we”, “our”, “us”)
         collects, uses, and protects personal data when you use the
         SuperSimpleOCR application and its associated support website. By using
         our services, you agree to the practices described below.
       </p>
 
-      <h2>Information We Collect</h2>
-      <p>
+      <h2 data-l10n="collect.title">Information We Collect</h2>
+      <p data-l10n="collect.body1">
         SuperSimpleOCR runs locally on your Mac. The app does not transmit your
         screenshots or recognized text to our servers. We may collect limited
         information when you contact us for support:
       </p>
       <ul>
-        <li>Contact details you provide voluntarily (such as your email).</li>
-        <li>
+        <li data-l10n="collect.li1">
+          Contact details you provide voluntarily (such as your email).
+        </li>
+        <li data-l10n="collect.li2">
           Diagnostic information you choose to share (screenshots, logs, or
           descriptions of an issue).
         </li>
       </ul>
 
-      <h2>How We Use Information</h2>
-      <p>We use the information you send us solely to:</p>
+      <h2 data-l10n="screenshots.title">Screenshot Processing</h2>
+      <p data-l10n="screenshots.body">
+        SuperSimpleOCR processes screenshots only when you manually trigger a
+        capture. The app does not perform any form of continuous screen
+        recording or screen monitoring. Screenshots are used exclusively for
+        on-device OCR text extraction. OCR processing occurs entirely on your
+        device and no screenshot data or recognized text is ever transmitted to
+        any server. Screenshots remain only in volatile memory during processing
+        and are immediately discarded after use. The app does not store
+        screenshots, record the screen continuously, or share any screen content
+        with third parties.
+      </p>
+
+      <h2 data-l10n="use.title">How We Use Information</h2>
+      <p data-l10n="use.body">We use the information you send us solely to:</p>
       <ul>
-        <li>Respond to your inquiries and provide technical assistance.</li>
-        <li>Improve the stability and usability of SuperSimpleOCR.</li>
+        <li data-l10n="use.li1">
+          Respond to your inquiries and provide technical assistance.
+        </li>
+        <li data-l10n="use.li2">
+          Improve the stability and usability of SuperSimpleOCR.
+        </li>
       </ul>
 
-      <h2>Data Sharing</h2>
-      <p>
+      <h2 data-l10n="sharing.title">Data Sharing</h2>
+      <p data-l10n="sharing.body">
         We do not sell or rent personal data. We only share information when
         required by law or if necessary to investigate and prevent abuse of our
         services.
       </p>
 
-      <h2>Data Retention</h2>
-      <p>
+      <h2 data-l10n="retention.title">Data Retention</h2>
+      <p data-l10n="retention.body">
         Emails and diagnostic files you send us are retained only while we work
         on your request. Once resolved, we delete the correspondence unless we
         need to keep it for legal or auditing purposes.
       </p>
 
-      <h2>Security</h2>
-      <p>
+      <h2 data-l10n="security.title">Security</h2>
+      <p data-l10n="security.body">
         We implement reasonable technical and organizational safeguards to
         protect any information you share with us. However, no method of
         transmission or storage is completely secure, so we cannot guarantee
         absolute security.
       </p>
 
-      <h2>Your Rights</h2>
-      <p>You may request that we:</p>
+      <h2 data-l10n="rights.title">Your Rights</h2>
+      <p data-l10n="rights.body">You may request that we:</p>
       <ul>
-        <li>Provide a copy of the information we hold about you.</li>
-        <li>Correct inaccurate details.</li>
-        <li>Delete correspondence we store, unless retention is legally required.</li>
+        <li data-l10n="rights.li1">
+          Provide a copy of the information we hold about you.
+        </li>
+        <li data-l10n="rights.li2">Correct inaccurate details.</li>
+        <li data-l10n="rights.li3">
+          Delete correspondence we store, unless retention is legally required.
+        </li>
       </ul>
-      <p>
+      <p data-l10n="rights.contact">
         To exercise these rights, contact us at
         <a href="mailto:adaebea@gmail.com">adaebea@gmail.com</a>.
       </p>
 
-      <h2>Changes to This Policy</h2>
-      <p>
+      <h2 data-l10n="changes.title">Changes to This Policy</h2>
+      <p data-l10n="changes.body">
         We may update this Privacy Policy periodically. Any changes will be
         posted on this page with an updated “Last updated” date. Significant
         updates may also be announced via the support site.
       </p>
 
-      <a class="back-link" href="index.html">&#8592; Back to Support page</a>
+      <a class="back-link" data-l10n="back" href="index.html"
+        >&#8592; Back to Support page</a
+      >
     </main>
+    <script>
+      const translations = {
+        en: {
+          title: `Privacy Policy`,
+          lastUpdated: `Last updated: February 2025`,
+          intro: `This Privacy Policy explains how SuperSimpleOCR (“we”, “our”, “us”) collects, uses, and protects personal data when you use the SuperSimpleOCR application and its associated support website. By using our services, you agree to the practices described below.`,
+          "collect.title": `Information We Collect`,
+          "collect.body1": `SuperSimpleOCR runs locally on your Mac. The app does not transmit your screenshots or recognized text to our servers. We may collect limited information when you contact us for support:`,
+          "collect.li1": `Contact details you provide voluntarily (such as your email).`,
+          "collect.li2": `Diagnostic information you choose to share (screenshots, logs, or descriptions of an issue).`,
+          "screenshots.title": `Screenshot Processing`,
+          "screenshots.body": `SuperSimpleOCR processes screenshots only when you manually trigger a capture. The app does not perform any form of continuous screen recording or screen monitoring. Screenshots are used exclusively for on-device OCR text extraction. OCR processing occurs entirely on your device and no screenshot data or recognized text is ever transmitted to any server. Screenshots remain only in volatile memory during processing and are immediately discarded after use. The app does not store screenshots, record the screen continuously, or share any screen content with third parties.`,
+          "use.title": `How We Use Information`,
+          "use.body": `We use the information you send us solely to:`,
+          "use.li1": `Respond to your inquiries and provide technical assistance.`,
+          "use.li2": `Improve the stability and usability of SuperSimpleOCR.`,
+          "sharing.title": `Data Sharing`,
+          "sharing.body": `We do not sell or rent personal data. We only share information when required by law or if necessary to investigate and prevent abuse of our services.`,
+          "retention.title": `Data Retention`,
+          "retention.body": `Emails and diagnostic files you send us are retained only while we work on your request. Once resolved, we delete the correspondence unless we need to keep it for legal or auditing purposes.`,
+          "security.title": `Security`,
+          "security.body": `We implement reasonable technical and organizational safeguards to protect any information you share with us. However, no method of transmission or storage is completely secure, so we cannot guarantee absolute security.`,
+          "rights.title": `Your Rights`,
+          "rights.body": `You may request that we:`,
+          "rights.li1": `Provide a copy of the information we hold about you.`,
+          "rights.li2": `Correct inaccurate details.`,
+          "rights.li3": `Delete correspondence we store, unless retention is legally required.`,
+          "rights.contact": `To exercise these rights, contact us at <a href="mailto:adaebea@gmail.com">adaebea@gmail.com</a>.`,
+          "changes.title": `Changes to This Policy`,
+          "changes.body": `We may update this Privacy Policy periodically. Any changes will be posted on this page with an updated “Last updated” date. Significant updates may also be announced via the support site.`,
+          back: `&#8592; Back to Support page`,
+          "language.label": `Language`,
+        },
+        zh: {
+          title: `隐私政策`,
+          lastUpdated: `最后更新：2025 年 2 月`,
+          intro: `本隐私政策说明 SuperSimpleOCR（“我们”）在您使用应用程序及其支持网站时如何收集、使用并保护个人数据。使用我们的服务即表示您同意以下做法。`,
+          "collect.title": `我们收集的信息`,
+          "collect.body1": `SuperSimpleOCR 在您的 Mac 本地运行，应用不会将您的截图或识别出的文本传输到我们的服务器。仅当您联系以获取支持时，我们可能会收集有限的信息：`,
+          "collect.li1": `您主动提供的联系方式（例如邮箱）。`,
+          "collect.li2": `您选择分享的诊断信息（截图、日志或问题描述）。`,
+          "screenshots.title": `截图处理`,
+          "screenshots.body": `SuperSimpleOCR 仅在您手动触发截屏时处理截图。应用不会进行任何形式的持续屏幕录制或屏幕监控。截图仅用于设备本地的 OCR 文本提取。OCR 处理完全在本地设备上完成，截图数据或识别出的文本不会被传输到任何服务器。截图仅在处理期间存留于内存中，并在使用后立即删除。应用不会保存截图，不会持续录屏，也不会与第三方共享任何屏幕内容。`,
+          "use.title": `我们如何使用信息`,
+          "use.body": `我们只会将您发送的信息用于：`,
+          "use.li1": `回复您的咨询并提供技术支持。`,
+          "use.li2": `改进 SuperSimpleOCR 的稳定性和可用性。`,
+          "sharing.title": `数据共享`,
+          "sharing.body": `我们不会出售或出租个人数据。仅在法律要求或为调查、预防滥用时才会共享信息。`,
+          "retention.title": `数据保留`,
+          "retention.body": `您发送的邮件和诊断文件只会在处理您的请求期间保留。问题解决后会删除，除非因法律或审计需要继续保存。`,
+          "security.title": `安全性`,
+          "security.body": `我们采取合理的技术和组织措施来保护您提供的信息。但任何传输或存储方式都无法保证绝对安全。`,
+          "rights.title": `您的权利`,
+          "rights.body": `您可以要求我们：`,
+          "rights.li1": `提供我们持有的您的信息副本。`,
+          "rights.li2": `更正不准确的细节。`,
+          "rights.li3": `删除我们存储的往来记录，除非法律要求保留。`,
+          "rights.contact": `如需行使上述权利，请发送邮件至 <a href='mailto:adaebea@gmail.com'>adaebea@gmail.com</a>。`,
+          "changes.title": `政策变更`,
+          "changes.body": `我们可能会定期更新本隐私政策。任何更改都会在此页面发布并更新“最后更新”日期，重要更新也可能通过支持网站公告。`,
+          back: `&#8592; 返回支持页面`,
+          "language.label": `语言`,
+        },
+        ja: {
+          title: `プライバシーポリシー`,
+          lastUpdated: `最終更新日: 2025年2月`,
+          intro: `本プライバシーポリシーは、SuperSimpleOCR（「当社」）がアプリおよびサポートサイトの利用に際してどのように個人データを収集・利用・保護するかを説明します。サービスを利用することで、以下の内容に同意したものとみなされます。`,
+          "collect.title": `収集する情報`,
+          "collect.body1": `SuperSimpleOCR はお使いの Mac 上でローカルに動作します。アプリはスクリーンショットや認識したテキストを当社サーバーへ送信しません。サポート対応のため、以下の限定的な情報を収集する場合があります。`,
+          "collect.li1": `（メールアドレスなど）あなたが任意で提供する連絡先。`,
+          "collect.li2": `あなたが共有を選択した診断情報（スクリーンショット、ログ、または問題の説明）。`,
+          "screenshots.title": `スクリーンショットの取り扱い`,
+          "screenshots.body": `SuperSimpleOCR は、ユーザーが手動でキャプチャを実行した時にのみスクリーンショットを処理します。アプリは継続的な画面録画や画面監視を一切行いません。スクリーンショットはデバイス上での OCR テキスト抽出のみに使用されます。OCR 処理は完全にデバイス上で行われ、スクリーンショットデータや認識されたテキストがサーバーへ送信されることはありません。スクリーンショットは処理中のみメモリ内に保持され、使用後すぐに破棄されます。アプリはスクリーンショットを保存せず、画面を継続的に記録したり、第三者と共有したりしません。`,
+          "use.title": `情報の利用目的`,
+          "use.body": `いただいた情報は次の目的だけに使用します。`,
+          "use.li1": `お問い合わせに対応し、技術サポートを提供すること。`,
+          "use.li2": `SuperSimpleOCR の安定性と使いやすさを向上させること。`,
+          "sharing.title": `データの共有`,
+          "sharing.body": `個人データを販売または貸与することはありません。法律で要求される場合、またはサービスの不正利用を調査・防止するために必要な場合にのみ情報を共有します。`,
+          "retention.title": `データの保持`,
+          "retention.body": `いただいたメールや診断ファイルは、ご依頼への対応中のみ保持します。対応完了後は、法的または監査上必要な場合を除き、削除します。`,
+          "security.title": `セキュリティ`,
+          "security.body": `提供いただいた情報を保護するため、合理的な技術的・組織的対策を講じています。ただし、送信や保管の方法に絶対の安全はありません。`,
+          "rights.title": `お客様の権利`,
+          "rights.body": `次のことを当社に請求できます。`,
+          "rights.li1": `保有するお客様の情報の写しを提供すること。`,
+          "rights.li2": `不正確な情報を修正すること。`,
+          "rights.li3": `法的義務がある場合を除き、保存しているやり取りを削除すること。`,
+          "rights.contact": `これらの権利を行使するには、<a href='mailto:adaebea@gmail.com'>adaebea@gmail.com</a> までご連絡ください。`,
+          "changes.title": `ポリシーの変更`,
+          "changes.body": `本プライバシーポリシーを随時更新する場合があります。変更は本ページに掲載し、「最終更新日」を更新します。重要な変更はサポートサイトでもお知らせすることがあります。`,
+          back: `&#8592; サポートページに戻る`,
+          "language.label": `言語`,
+        },
+        ko: {
+          title: `개인정보 처리방침`,
+          lastUpdated: `최종 업데이트: 2025년 2월`,
+          intro: `이 개인정보 처리방침은 SuperSimpleOCR(“당사”)가 앱 및 지원 웹사이트 이용 시 개인 데이터를 어떻게 수집·사용·보호하는지 설명합니다. 서비스를 이용하면 아래 관행에 동의하는 것으로 간주됩니다.`,
+          "collect.title": `수집하는 정보`,
+          "collect.body1": `SuperSimpleOCR는 Mac에서 로컬로 실행됩니다. 앱은 스크린샷이나 인식된 텍스트를 당사 서버로 전송하지 않습니다. 지원을 요청할 때 아래 제한적인 정보를 수집할 수 있습니다.`,
+          "collect.li1": `사용자가 자발적으로 제공한 연락처(예: 이메일).`,
+          "collect.li2": `사용자가 제공하기로 선택한 진단 정보(스크린샷, 로그 또는 문제 설명).`,
+          "screenshots.title": `스크린샷 처리`,
+          "screenshots.body": `SuperSimpleOCR는 사용자가 수동으로 캡처를 실행할 때만 스크린샷을 처리합니다. 앱은 어떠한 형태의 지속적인 화면 녹화나 화면 모니터링도 수행하지 않습니다. 스크린샷은 기기 내에서 OCR 텍스트 추출을 위해서만 사용됩니다. OCR 처리는 완전히 기기에서 이루어지며, 스크린샷 데이터나 인식된 텍스트가 서버로 전송되는 일은 없습니다. 스크린샷은 처리 중에만 메모리에 존재하며 사용 후 즉시 삭제됩니다. 앱은 스크린샷을 저장하지 않으며, 화면을 지속적으로 기록하거나 제3자와 화면 내용을 공유하지 않습니다。`,
+          "use.title": `정보 사용 목적`,
+          "use.body": `보내주신 정보는 다음 목적에만 사용됩니다.`,
+          "use.li1": `문의에 응답하고 기술 지원을 제공하기 위해.`,
+          "use.li2": `SuperSimpleOCR의 안정성과 사용성을 개선하기 위해.`,
+          "sharing.title": `데이터 공유`,
+          "sharing.body": `개인 데이터를 판매하거나 임대하지 않습니다. 법적 요구가 있거나 서비스 악용을 조사·방지하기 위해 필요한 경우에만 정보를 공유합니다.`,
+          "retention.title": `데이터 보관`,
+          "retention.body": `귀하가 보내주신 이메일과 진단 파일은 요청을 처리하는 동안에만 보관합니다. 처리가 완료되면 법적 또는 감사 목적상 필요한 경우가 아니라면 삭제합니다.`,
+          "security.title": `보안`,
+          "security.body": `제공된 정보를 보호하기 위해 합리적인 기술적·관리적 조치를 시행하고 있습니다. 그러나 전송 또는 저장 방식이 절대적으로 안전하다고 보장할 수는 없습니다.`,
+          "rights.title": `귀하의 권리`,
+          "rights.body": `다음 사항을 요청할 수 있습니다.`,
+          "rights.li1": `당사가 보유한 귀하 정보의 사본 제공.`,
+          "rights.li2": `부정확한 정보를 수정하는 것.`,
+          "rights.li3": `법적 보관 의무가 없는 한, 보관 중인 서신 삭제.`,
+          "rights.contact": `이 권리를 행사하려면 <a href='mailto:adaebea@gmail.com'>adaebea@gmail.com</a> 로 연락해 주세요.`,
+          "changes.title": `본 방침의 변경`,
+          "changes.body": `본 개인정보 처리방침은 수시로 업데이트될 수 있습니다. 변경 사항은 이 페이지에 게시하며 “최종 업데이트” 날짜를 갱신합니다. 중요한 변경 사항은 지원 사이트를 통해서도 안내할 수 있습니다.`,
+          back: `&#8592; 지원 페이지로 돌아가기`,
+          "language.label": `언어`,
+        },
+        fr: {
+          title: `Politique de confidentialité`,
+          lastUpdated: `Dernière mise à jour : février 2025`,
+          intro: `Cette politique de confidentialité explique comment SuperSimpleOCR (« nous ») collecte, utilise et protège les données personnelles lorsque vous utilisez l’application SuperSimpleOCR et son site d’assistance. En utilisant nos services, vous acceptez les pratiques décrites ci-dessous.`,
+          "collect.title": `Informations collectées`,
+          "collect.body1": `SuperSimpleOCR fonctionne localement sur votre Mac. L’app n’envoie ni vos captures d’écran ni le texte reconnu vers nos serveurs. Nous pouvons collecter des informations limitées lorsque vous nous contactez pour obtenir de l’aide :`,
+          "collect.li1": `Coordonnées fournies volontairement (par exemple votre e-mail).`,
+          "collect.li2": `Informations de diagnostic que vous choisissez de partager (captures d’écran, journaux ou description du problème).`,
+          "screenshots.title": `Traitement des captures d’écran`,
+          "screenshots.body": `SuperSimpleOCR ne traite les captures d’écran que lorsque vous lancez manuellement une capture. L’app n’effectue aucune forme d’enregistrement continu de l’écran ni de surveillance de celui-ci. Les captures d’écran sont utilisées exclusivement pour l’extraction de texte OCR sur l’appareil. Le traitement OCR est entièrement local et aucune capture d’écran ni texte reconnu n’est transmis à un serveur. Les captures restent uniquement dans la mémoire volatile pendant le traitement et sont supprimées immédiatement après utilisation. L’app ne stocke pas les captures, n’enregistre pas l’écran de manière continue et ne partage aucun contenu d’écran avec des tiers.`,
+          "use.title": `Utilisation des informations`,
+          "use.body": `Nous utilisons les informations que vous nous envoyez uniquement pour :`,
+          "use.li1": `Répondre à vos demandes et fournir une assistance technique.`,
+          "use.li2": `Améliorer la stabilité et la facilité d’utilisation de SuperSimpleOCR.`,
+          "sharing.title": `Partage des données`,
+          "sharing.body": `Nous ne vendons ni ne louons de données personnelles. Nous partageons des informations uniquement lorsqu’exigé par la loi ou si nécessaire pour enquêter et prévenir les abus de nos services.`,
+          "retention.title": `Conservation des données`,
+          "retention.body": `Les e-mails et fichiers de diagnostic que vous nous envoyez ne sont conservés que pendant le traitement de votre demande. Une fois résolue, nous supprimons ces échanges, sauf obligation légale ou d’audit de les conserver.`,
+          "security.title": `Sécurité`,
+          "security.body": `Nous appliquons des mesures techniques et organisationnelles raisonnables pour protéger les informations que vous partagez. Cependant, aucune méthode de transmission ou de stockage n’est totalement sécurisée ; nous ne pouvons garantir une sécurité absolue.`,
+          "rights.title": `Vos droits`,
+          "rights.body": `Vous pouvez nous demander de :`,
+          "rights.li1": `Fournir une copie des informations que nous détenons à votre sujet.`,
+          "rights.li2": `Corriger les informations inexactes.`,
+          "rights.li3": `Supprimer les échanges que nous conservons, sauf obligation légale.`,
+          "rights.contact": `Pour exercer ces droits, contactez-nous à <a href='mailto:adaebea@gmail.com'>adaebea@gmail.com</a>.`,
+          "changes.title": `Modifications de cette politique`,
+          "changes.body": `Nous pouvons mettre à jour périodiquement cette politique de confidentialité. Toute modification sera publiée sur cette page avec une date de « Dernière mise à jour » actualisée. Les mises à jour importantes pourront également être annoncées sur le site d’assistance.`,
+          back: `&#8592; Retour à la page d’assistance`,
+          "language.label": `Langue`,
+        },
+      };
+
+      const l10nElements = document.querySelectorAll("[data-l10n]");
+      const languageButtons = Array.from(
+        document.querySelectorAll(".language-switcher button")
+      );
+
+      function setLanguage(lang) {
+        const dictionary = translations[lang] || translations.en;
+        document.documentElement.lang = lang;
+        l10nElements.forEach((element) => {
+          const key = element.dataset.l10n;
+          if (dictionary[key]) {
+            element.innerHTML = dictionary[key];
+          }
+        });
+        languageButtons.forEach((btn) =>
+          btn.classList.toggle("active", btn.dataset.lang === lang)
+        );
+      }
+
+      languageButtons.forEach((btn) => {
+        btn.addEventListener("click", () => setLanguage(btn.dataset.lang));
+      });
+
+      setLanguage("en");
+    </script>
   </body>
 </html>
